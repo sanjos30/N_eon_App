@@ -12,6 +12,9 @@ exports.create_a_customer = function(req, res) {
   new_cust.save(function(err, customer) {
     if (err)
       res.send(err);
+    var joined_date = new Date();
+    customer.joined_on=joined_date;
+    customer.save();
     res.json(customer);
   });
 };
@@ -40,6 +43,9 @@ exports.update_a_customer = function(req, res) {
   Customer.findOneAndUpdate({'_id': req.params.customerid}, req.body, {new: true}, function(err, customer) {
     if (err)
       res.send(err);
+    var updated_at = new Date();
+    customer.updated_at=updated_at;
+    customer.save();
     res.json(customer);
   });
 };
@@ -62,6 +68,9 @@ exports.create_an_order = function(req, res) {
   new_order.save(function(err, order) {
     if (err)
       res.send(err);
+    var order_date = new Date();
+    order.order_date=order_date;
+    order.save();
     res.json(order);
   });
 };
@@ -91,6 +100,9 @@ exports.update_an_order = function(req, res) {
   Order.findOneAndUpdate({'_id': req.params.orderid}, req.body, {new: true}, function(err, order) {
     if (err)
       res.send(err);
+    var updated_at = new Date();
+    order.updated_at=updated_at;
+    order.save();
     res.json(order);
   });
 };
@@ -138,6 +150,7 @@ exports.read_a_customer_order = function(req, res) {
     if (err)
       res.send(err);
     var new_order = new Order(req.body);
+
     customer.order_list.push(new_order);
     customer.save();
     res.json(customer);
