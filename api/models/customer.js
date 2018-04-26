@@ -13,7 +13,7 @@ var customerSchema = new Schema({
   password: { type: String, required: true },
   cateogry: String,
   channel: String,
-// order_list: [{
+//    order_list: [{
  //   type: Schema.ObjectId,/
 //    ref: 'Order'
 //  }],
